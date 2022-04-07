@@ -10,24 +10,28 @@ const CountersList = () => {
         { id: 4, value: 0, name: 'Набор минималиста' },
     ];
     const [counters, setCounters] = useState(initialState);
+
     const handleDelete = (id) => {
         const newCounters = counters.filter((c) => c.id !== id);
         setCounters(newCounters);
     };
+
     const handleReset = () => {
         setCounters(initialState);
     };
+
     const onIncrement = (id) => {
-        const newValue = counters.map((item) =>
-            item.id === id ? { ...item, value: item.value + 1 } : { ...item }
-        );
-        setCounters(newValue);
+        const elemIndex = counters.findIndex((item) => item.id === id);
+        const valueIncrement = [...counters];
+        valueIncrement[elemIndex].value++;
+        setCounters(valueIncrement);
     };
+
     const onDecrement = (id) => {
-        const newValue = counters.map((item) =>
+        const valueDecrement = counters.map((item) =>
             item.id === id ? { ...item, value: item.value - 1 } : { ...item }
         );
-        setCounters(newValue);
+        setCounters(valueDecrement);
     };
 
     return (
