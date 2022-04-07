@@ -16,10 +16,19 @@ const CountersList = () => {
     };
     const handleReset = () => {
         setCounters(initialState);
-        // console.log('handleReset');
     };
-    const onIncrement = () => {};
-    const onDecrement = () => {};
+    const onIncrement = (id) => {
+        const newValue = counters.map((item) =>
+            item.id === id ? { ...item, value: item.value + 1 } : { ...item }
+        );
+        setCounters(newValue);
+    };
+    const onDecrement = (id) => {
+        const newValue = counters.map((item) =>
+            item.id === id ? { ...item, value: item.value - 1 } : { ...item }
+        );
+        setCounters(newValue);
+    };
 
     return (
         <>

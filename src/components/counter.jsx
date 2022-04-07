@@ -4,19 +4,12 @@ const Counter = (props) => {
     const { value } = props;
 
     const formatValue = () => {
-        return value === 0 ? 'empty' : value;
+        return value === 0 ? 'пусто' : value;
     };
     const getBageClasses = () => {
         let classes = 'badge m-2 bg-';
         classes += value === 0 ? 'warning' : 'primary';
         return classes;
-    };
-
-    const handleIncrement = () => {
-        return props.onIncrement(props.id);
-    };
-    const handleDecrement = () => {
-        return props.onDecrement(props.id);
     };
 
     return (
@@ -25,13 +18,13 @@ const Counter = (props) => {
             <span className={getBageClasses()}>{formatValue()}</span>
             <button
                 className="btn btn-primary btn-sm m-2"
-                onClick={handleIncrement}
+                onClick={() => props.onIncrement(props.id)}
             >
                 +
             </button>
             <button
                 className="btn btn-primary btn-sm m-2"
-                onClick={handleDecrement}
+                onClick={() => props.onDecrement(props.id)}
             >
                 -
             </button>
@@ -39,7 +32,7 @@ const Counter = (props) => {
                 className="btn btn-danger btn-sm m-2"
                 onClick={() => props.onDelete(props.id)}
             >
-                Delete
+                Удалить
             </button>
         </div>
     );
